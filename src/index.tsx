@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
-import { Questions1318331 as App } from "./questions-1318331";
+import { Questions1319143 as App } from "./questions-1319143";
 
 ReactDOM.render(
   <React.StrictMode>
