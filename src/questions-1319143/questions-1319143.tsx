@@ -51,35 +51,6 @@ interface IGetPostArgs {
 }
 /* #endregion */
 
-/* #region reduce.ts */
-const reduce: Reducer<Store, Action> = (state: Store, action: Action) => {
-  if (action.type === "SET_DETAILS") {
-    return { ...state, details: (action as SetPostAction).payload };
-  }
-
-  if (action.type === "CLEAR_DETAILS") {
-    return { ...state, details: null };
-  }
-
-  if (action.type === "SHOW_LOADER") {
-    return { ...state, isLoading: true };
-  }
-
-  if (action.type === "HIDE_LOADER") {
-    return { ...state, isLoading: false };
-  }
-
-  return state;
-};
-
-const actions = Object.freeze({
-  showLoader: () => ({ type: "SHOW_LOADER" }),
-  hideLoader: () => ({ type: "HIDE_LOADER" }),
-  clearDetails: () => ({ type: "CLEAR_DETAILS" }),
-  setDetails: (payload: Post) => ({ type: "SET_DETAILS", payload }),
-});
-/* #endregion */
-
 /* #region utils.ts */
 async function getPost(args: IGetPostArgs) {
   const { abortController, postId, dispatch } = args;
@@ -110,6 +81,35 @@ async function getPost(args: IGetPostArgs) {
     dispatch(actions.clearDetails());
   }
 }
+/* #endregion */
+
+/* #region reduce.ts */
+const reduce: Reducer<Store, Action> = (state: Store, action: Action) => {
+  if (action.type === "SET_DETAILS") {
+    return { ...state, details: (action as SetPostAction).payload };
+  }
+
+  if (action.type === "CLEAR_DETAILS") {
+    return { ...state, details: null };
+  }
+
+  if (action.type === "SHOW_LOADER") {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === "HIDE_LOADER") {
+    return { ...state, isLoading: false };
+  }
+
+  return state;
+};
+
+const actions = Object.freeze({
+  showLoader: () => ({ type: "SHOW_LOADER" }),
+  hideLoader: () => ({ type: "HIDE_LOADER" }),
+  clearDetails: () => ({ type: "CLEAR_DETAILS" }),
+  setDetails: (payload: Post) => ({ type: "SET_DETAILS", payload }),
+});
 /* #endregion */
 
 /* #region React Component */
